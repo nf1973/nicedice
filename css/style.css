@@ -120,13 +120,13 @@
     font-size: 2em;
     text-decoration: none;
     background: #000;
-    color: #5ce219;
+    color: #e21919;
     margin: 20px;
     text-align: right;
     padding-top: 0px;
     padding-right: 10px;
     border-radius: 8px;
-    border:4px solid #5ce219;
+    border:4px solid #e21919;
   }
 
   .total {
