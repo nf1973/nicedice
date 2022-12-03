@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nice Dice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Urbanist:wght@800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+  </head>
+
+  <body>
+    <div class="container-grid">
+      <div class="container-item">
+        <div class="header-grid">
+          <div class="header-grid-item header-logo"></div>
+          <div class="header-grid-item header-name">Neil</div>
+          <div class="header-grid-item header-nav"></div>
+        </div>
+      </div>
+      
+      <div class="container-item"> 
+        <div class="main" id="main">
+          <div class="content">
+            <div class="dice-grid"> 
+              <div class="dice dice-one" onclick="dice[0].lockSwitch();"></div>
+              <div class="dice dice-two" onclick="dice[1].lockSwitch();"></div>
+              <div class="dice dice-three" onclick="dice[2].lockSwitch();"></div>
+              <div class="dice dice-four" onclick="dice[3].lockSwitch();"></div>
+              <div class="dice dice-five" onclick="dice[4].lockSwitch();"></div>
+            </div>
+                <div class="buttons-grid">     
+                    <div class="led total">000</div>
+                    <div class="btn roll" onclick="rollDice();">Roll Dice</div>
+                </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="container-item">
+        <div class="footer">
+          Nice Dice v1.0 by Neil<br/>
+         </div>
+      </div>
+    </div>
+    
+  </body>
+  <script src="scripts/main.js"></script>
+  <script src="scripts/extras.js"></script>
+  </html>
+
+
+
+  
