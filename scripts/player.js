@@ -4,8 +4,10 @@ class Player {
     this.name = name;
     this.roundsRemaining = 13;
     this.diceRollsRemainingThisRound = 3;
-    // this.qsName = document.querySelector(`.sc-p${id}-name`);
-    // this.qsName.textContent = name;
+    this.subTotal = 0;
+    this.bonus = 0;
+    this.total = 0;
+
     this.scoreCard = new Map([
       ["1s", ["available", 0]],
       ["2s", ["available", 0]],
@@ -21,6 +23,31 @@ class Player {
       ["5kind", ["available", 0]],
       ["chance", ["available", 0]],
     ]);
+  }
+
+  calculateSubTotal() {
+    this.subTotal =
+      this.scoreCard.get("1s")[1] +
+      this.scoreCard.get("2s")[1] +
+      this.scoreCard.get("3s")[1] +
+      this.scoreCard.get("4s")[1] +
+      this.scoreCard.get("5s")[1] +
+      this.scoreCard.get("6s")[1];
+  }
+
+  calculateBonus() {
+    if (this.subtotal >= 63) {
+      this.bonus = this.calculateSubTotal + 35;
+    }
+  }
+
+  calculateTotal() {
+    this.calculateSubTotal();
+    this.calculateBonus();
+    for (let [key, value] of this.scoreCard) {
+      total = total + value[1];
+    }
+    this.total = total + this.bonus;
   }
 
   usePosition(mapKey) {
