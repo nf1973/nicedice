@@ -101,7 +101,6 @@ function aDiceIsUnlocked() {
       return true;
     }
   }
-  console.log("All dice are locked");
   return false;
 }
 

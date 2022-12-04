@@ -17,13 +17,13 @@ class Dice {
   lockSwitch() {
     if (this.isLocked) {
       this.isLocked = false;
-      this.querySelector.style.backgroundColor = "white";
+      this.querySelector.style.backgroundColor = "#decfca";
       this.querySelector.style.color = "black";
     } else {
       if (this.value > 0) {
         this.isLocked = true;
         this.querySelector.style.backgroundColor = "black";
-        this.querySelector.style.color = "white";
+        this.querySelector.style.color = "#decfca";
       }
     }
   }
@@ -35,7 +35,7 @@ class Dice {
 
   unlock() {
     this.isLocked = false;
-    this.querySelector.style.backgroundColor = "white";
+    this.querySelector.style.backgroundColor = "#decfca";
     this.querySelector.style.color = "black";
   }
 }

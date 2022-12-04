@@ -1,11 +1,13 @@
 :root {
-  --select-btn-color: rgb(4, 142, 13);
+  --select-btn-color: #28955d;
   --game-header-color: rgb(234, 206, 23);
-  --game-background-color: rgb(157, 34, 54);
+  --game-background-color: #bb534a;
   --dice-border-color: black;
-  --dice-bg-color: rgb(245, 244, 244);
-  --button-bg-color: rgb(157, 34, 54);
+  --dice-bg-color: #decfca;
+  --button-bg-color: #bb534a;
   --button-text-color: var(--game-header-color);
+  --scoreboard-background-color: #decfca;
+  --scoreboaard-text-color: BB534A;
 }
 
 * {
@@ -82,7 +84,7 @@ body {
 .game-grid {
   display: grid;
   grid-template-rows: 1fr 6fr;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 60% 40%;
 }
 
 .game-header {
@@ -103,7 +105,7 @@ body {
 
 .dice-and-controls-grid {
   display: grid;
-  grid-template-rows: 1fr 8fr;
+  grid-template-rows: 1fr 2fr;
   grid-template-columns: 1fr;
   justify-content: center;
   width: 100%;
@@ -111,8 +113,8 @@ body {
 
 .dice-grid {
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: 1fr;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr 1fr;
   justify-content: center;
   align-content: center;
   padding-left: 15px;
@@ -125,26 +127,32 @@ body {
   background-color: var(--dice-bg-color);
   margin: 0px 5px;
   font-size: 2em;
-  height: 40px;
-  width: 40px;
+  height: 50px;
+  width: 50px;
+  padding-top: 5px;
 }
 
+.dice-four,
+.dice-five {
+  margin-left: 60px;
+}
 .buttons-grid {
   display: grid;
-  grid-template-columns: 1fr, 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  justify-content: center;
+  justify-content: left;
 }
 
-.btn {
-  width: 200px;
+.btn,
+.roll {
   height: 50px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   text-decoration: none;
   background: var(--button-bg-color);
   color: var(--button-text-color);
-  margin: 20px;
+  margin-top: 20px;
+  margin-right: 35px;
   text-align: center;
   padding-top: 15px;
   border: 1px solid var(--button-text-color);
@@ -159,14 +167,19 @@ body {
 }
 
 .sc {
-  background-color: #fff;
+  background-color: var(--scoreboard-background-color);
   padding: 4px;
-  border: 1px solid black;
+  border: 1px solid var(--game-background-color);
+}
+
+.sc-p0-name {
+  text-align: center;
 }
 
 .score {
   text-align: center;
   padding-top: 2px;
+  font-family: Orbitron, Arial, Helvetica, sans-serif;
 }
 .btn-select {
   width: 20px;

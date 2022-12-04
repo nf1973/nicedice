@@ -30,9 +30,9 @@
             <div class="game-grid">
               <div class="game-header">Nice Dice!</div>
               <div class="sc-grid">
-                <div class="sc sc-rounds">Upper Section</div>
-                <div class="sc sc-how">How to Score</div>
-                <div class="sc sc-p0-name">Player 1</div>
+                <div class="sc sc-rounds heavy">Upper Section</div>
+                <div class="sc sc-how heavy">How to Score</div>
+                <div class="sc sc-p0-name heavy">Player 1</div>
 
                 <div class="sc sc-1s">1s</div>
                 <div class="sc sc-how">Count the 1s</div>
@@ -101,54 +101,68 @@
                   <div class="score sc-bonus-p0-score"></div>
                   <div></div>
                 </div>
-                <!--TODO - Add the rest of the table -->
-                <div class="sc sc-XXX-name">ttt</div>
-                <div class="sc sc-how">tttttt</div>
-                <div class="sc sc-pr-grid sc-XXX-p0">
-                  <div class="score sc-XXX-p0-score"></div>
-                  <div></div>
+
+                <div class="sc sc-3kind-name">Three of a kind</div>
+                <div class="sc sc-how">Total of all dice</div>
+                <div class="sc sc-pr-grid sc-3kind-p0">
+                  <div class="score sc-3kind-p0-score"></div>
+                  <div
+                    class="btn-select sc-3kind-p0-btn"
+                    onclick="tryPosition('3kind',0)"></div>
                 </div>
 
-                <div class="sc sc-XXX-name">ttt</div>
-                <div class="sc sc-how">tttttt</div>
-                <div class="sc sc-pr-grid sc-XXX-p0">
-                  <div class="score sc-XXX-p0-score"></div>
-                  <div></div>
+                <div class="sc sc-4kind-name">Four of a kind</div>
+                <div class="sc sc-how">Total of all dice</div>
+                <div class="sc sc-pr-grid sc-4kind-p0">
+                  <div class="score sc-4kind-p0-score"></div>
+                  <div
+                    class="btn-select sc-4kind-p0-btn"
+                    onclick="tryPosition('4kind',0)"></div>
                 </div>
 
-                <div class="sc sc-XXX-name">ttt</div>
-                <div class="sc sc-how">tttttt</div>
-                <div class="sc sc-pr-grid sc-XXX-p0">
-                  <div class="score sc-XXX-p0-score"></div>
-                  <div></div>
+                <div class="sc sc-fullhouse-name">Full House</div>
+                <div class="sc sc-how">A pair an a triple</div>
+                <div class="sc sc-pr-grid sc-fullhouse-p0">
+                  <div class="score sc-fullhouse-p0-score"></div>
+                  <div
+                    class="btn-select sc-fullhouse-p0-btn"
+                    onclick="tryPosition('fullhouse',0)"></div>
                 </div>
 
-                <div class="sc sc-XXX-name">ttt</div>
-                <div class="sc sc-how">tttttt</div>
-                <div class="sc sc-pr-grid sc-XXX-p0">
-                  <div class="score sc-XXX-p0-score"></div>
-                  <div></div>
+                <div class="sc sc-smallstr-name">Small Straight</div>
+                <div class="sc sc-how">Sequence of four</div>
+                <div class="sc sc-pr-grid sc-smallstr-p0">
+                  <div class="score sc-smallstr-p0-score"></div>
+                  <div
+                    class="btn-select sc-smallstr-p0-btn"
+                    onclick="tryPosition('smallstr',0)"></div>
                 </div>
 
-                <div class="sc sc-XXX-name">ttt</div>
-                <div class="sc sc-how">tttttt</div>
-                <div class="sc sc-pr-grid sc-XXX-p0">
-                  <div class="score sc-XXX-p0-score"></div>
-                  <div></div>
+                <div class="sc sc-largestr-name">Large Straight</div>
+                <div class="sc sc-how">Sequence of five</div>
+                <div class="sc sc-pr-grid sc-largestr-p0">
+                  <div class="score sc-largestr-p0-score"></div>
+                  <div
+                    class="btn-select sc-largestr-p0-btn"
+                    onclick="tryPosition('largestr',0)"></div>
                 </div>
 
-                <div class="sc sc-XXX-name">ttt</div>
-                <div class="sc sc-how">tttttt</div>
-                <div class="sc sc-pr-grid sc-XXX-p0">
-                  <div class="score sc-XXX-p0-score"></div>
-                  <div></div>
+                <div class="sc sc-5kind-name">Five of a kind</div>
+                <div class="sc sc-how">Total of all dice</div>
+                <div class="sc sc-pr-grid sc-5kind-p0">
+                  <div class="score sc-5kind-p0-score"></div>
+                  <div
+                    class="btn-select sc-5kind-p0-btn"
+                    onclick="tryPosition('5kind',0)"></div>
                 </div>
 
-                <div class="sc sc-XXX-name">ttt</div>
-                <div class="sc sc-how">tttttt</div>
-                <div class="sc sc-pr-grid sc-XXX-p0">
-                  <div class="score sc-XXX-p0-score"></div>
-                  <div></div>
+                <div class="sc sc-chance-name">Chance</div>
+                <div class="sc sc-how">Anything goes</div>
+                <div class="sc sc-pr-grid sc-chance-p0">
+                  <div class="score sc-chance-p0-score"></div>
+                  <div
+                    class="btn-select sc-chance-p0-btn"
+                    onclick="tryPosition('chance',0)"></div>
                 </div>
 
                 <div class="sc heavy sc-total-name">Total</div>
