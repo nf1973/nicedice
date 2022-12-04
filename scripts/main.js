@@ -66,14 +66,28 @@ class Player {
       case "1s":
         for (i = 0; i <= 4; i++) {
           if (dice[i].value == 1) {
-            tot = tot + value;
+            tot = tot + dice[i].value;
           }
-          break;
         }
-        this.scoreCard.set(mapKey[0], "not available");
-        this.scoreCard.set(mapKey[1], tot);
-        console.log(this.scoreCard);
+        break;
+      case "2s":
+        for (i = 0; i <= 4; i++) {
+          if (dice[i].value == 2) {
+            tot = tot + dice[i].value;
+          }
+        }
+        break;
+      case "3s":
+        for (i = 0; i <= 4; i++) {
+          if (dice[i].value == 3) {
+            tot = tot + dice[i].value;
+          }
+        }
+        break;
     }
+    this.scoreCard.set(mapKey, ["not-available", tot]);
+    let qs = document.querySelector(`.sc-${mapKey}-p${currentPlayer.id}`);
+    qs.innerHTML = tot;
   }
 }
 
@@ -135,7 +149,7 @@ function rollDice() {
   }
 }
 
-function setPosition(mapKey) {
+function tryPosition(mapKey) {
   console.log(
     "Player " +
       currentPlayer.name +
