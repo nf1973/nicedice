@@ -2,12 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nice Dice</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Urbanist:wght@800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Urbanist:wght@800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
 
   <body>
@@ -19,37 +22,65 @@
           <div class="header-grid-item header-nav"></div>
         </div>
       </div>
-      
-      <div class="container-item"> 
+
+      <div class="container-item">
         <div class="main" id="main">
           <div class="content">
-            <div class="dice-grid"> 
+            <div class="dice-grid">
               <div class="dice dice-one" onclick="dice[0].lockSwitch();"></div>
               <div class="dice dice-two" onclick="dice[1].lockSwitch();"></div>
-              <div class="dice dice-three" onclick="dice[2].lockSwitch();"></div>
+              <div
+                class="dice dice-three"
+                onclick="dice[2].lockSwitch();"
+              ></div>
               <div class="dice dice-four" onclick="dice[3].lockSwitch();"></div>
               <div class="dice dice-five" onclick="dice[4].lockSwitch();"></div>
             </div>
-                <div class="buttons-grid">     
-                    <div class="led total">000</div>
-                    <div class="btn roll" onclick="rollDice();">Roll Dice</div>
-                </div>
+            <div class="buttons-grid">
+              <div class="player-playing">Player</div>
+              <div class="led total">000</div>
+              <div class="btn roll" onclick="rollDice();">Roll Dice</div>
+            </div>
+            <div class="sc-grid">
+              <div class="sc sc-rounds">Upper Section</div>
+              <div class="sc sc-how">How to Score</div>
+              <div class="sc sc-p0-name"></div>
+
+              <div class="sc sc-1s">1s</div>
+              <div class="sc sc-how">Count the 1s</div>
+              <div class="sc sc-pr-grid sc-1s-p0">
+                <div class="sc-1s-p0-score">---</div>
+                <div
+                  class="btn-select sc-1s-p0-btn"
+                  onclick="setPosition('1s',0)"
+                ></div>
+              </div>
+
+              <div class="sc sc-2s">2s</div>
+              <div class="sc sc-how">Count the 2s</div>
+              <div class="sc sc-pr-grid sc-2s-p0">
+                <div class="sc-2s-p0-score">---</div>
+                <div class="btn-select sc-2s-p0-btn"></div>
+              </div>
+
+              <div class="sc sc-3s-name">3s</div>
+              <div class="sc sc-how">Count the 3s</div>
+              <div class="sc sc-pr-grid sc-3s-p0">
+                <div class="sc-3s-p0-score">---</div>
+                <div class="btn-select sc-3s-p0-btn"></div>
+              </div>
+
+              <!-- TODO - Add the rest of the table -->
+            </div>
           </div>
         </div>
       </div>
-      
+
       <div class="container-item">
-        <div class="footer">
-          Nice Dice v1.0 by Neil<br/>
-         </div>
+        <div class="footer">Nice Dice v1.0 by Neil<br /></div>
       </div>
     </div>
-    
   </body>
   <script src="scripts/main.js"></script>
   <script src="scripts/extras.js"></script>
-  </html>
-
-
-
-  
+</html>
