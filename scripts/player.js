@@ -36,7 +36,7 @@ class Player {
   }
 
   calculateBonus() {
-    if (this.subtotal >= 63) {
+    if (this.subTotal >= 63) {
       this.bonus = this.calculateSubTotal + 35;
     }
   }
