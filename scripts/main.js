@@ -6,11 +6,9 @@
 class Dice {
   constructor(name) {
     this.name = name;
-    //this.value=getRandomInt(6)+1;
     let qs = ".dice-" + name.toLowerCase();
     this.querySelector = document.querySelector(qs);
-    //this.querySelector.innerHTML=this.value;
-    this.throw();
+
     this.isLocked = false;
   }
 
@@ -61,6 +59,22 @@ class Player {
       ["chance", ["available", 0]],
     ]);
   }
+
+  usePosition(mapKey) {
+    let tot = 0;
+    switch (mapKey) {
+      case "1s":
+        for (i = 0; i <= 4; i++) {
+          if (dice[i].value == 1) {
+            tot = tot + value;
+          }
+          break;
+        }
+        this.scoreCard.set(mapKey[0], "not available");
+        this.scoreCard.set(mapKey[1], tot);
+        console.log(this.scoreCard);
+    }
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -102,10 +116,22 @@ total = document.querySelector(".total");
 function rollDice() {
   lastThrow = 0;
   //Throw the Dice
-  for (i = 0; i <= 4; i++) {
-    dice[i].throw();
-    lastThrow = lastThrow + dice[i].value;
-    total.innerHTML = lastThrow;
+  if (currentPlayer.diceRollsRemainingThisRound >= 1 && aDiceIsUnlocked()) {
+    console.log(
+      "Player " +
+        currentPlayer.name +
+        " (id:" +
+        currentPlayer.id +
+        ") has " +
+        currentPlayer.diceRollsRemainingThisRound +
+        " dice rolls remaining"
+    );
+    for (i = 0; i <= 4; i++) {
+      dice[i].throw();
+      lastThrow = lastThrow + dice[i].value;
+      total.innerHTML = lastThrow;
+    }
+    currentPlayer.diceRollsRemainingThisRound--;
   }
 }
 
@@ -125,8 +151,18 @@ function setPosition(mapKey) {
     currentPlayer.roundsRemaining > 0 &&
     currentPlayer.scoreCard.get(mapKey)[0] == "available"
   ) {
-    console.log("Made It");
+    currentPlayer.usePosition(mapKey);
   }
+}
+
+function aDiceIsUnlocked() {
+  for (i = 0; i <= 4; i++) {
+    if (!dice[i].isLocked) {
+      return true;
+    }
+  }
+  console.log("All dice are locked");
+  return false;
 }
 
 //Random Integer Generator
