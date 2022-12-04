@@ -3,68 +3,108 @@
 //By Neil
 
 //Class Definitions
-class Dice {
-    constructor (name) {
-        this.name=name;
-        //this.value=getRandomInt(6)+1;
-        let qs='.dice-'+name.toLowerCase();
-        this.querySelector=document.querySelector(qs);
-        //this.querySelector.innerHTML=this.value;
-        this.throw();
-        this.isLocked=false;
-    } 
 
-    throw () {
-        if (!this.isLocked) {
-            this.value=getRandomInt(6)+1;
-            this.querySelector.innerHTML=this.value;
-        } 
-    } 
-
-    lockSwitch () {
-        if (this.isLocked) {
-            this.isLocked = false;
-            this.querySelector.style.backgroundColor = "white";
-            this.querySelector.style.color = "black";
-            } else {
-            this.isLocked = true;
-            this.querySelector.style.backgroundColor = "black";
-            this.querySelector.style.color = "white";
-            }
-        }
-    }
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Global Variables / Constant Definitions
-const diceNames=["one", "two", "three", "four", "five"]
-const dice = []; 
-var lastThrow = 0;
+const diceNames = ["one", "two", "three", "four", "five"];
+const playerNames = ["Player 1"]; //TODO Make the number of players changeable (1-4 players) and get input from the User
+const dice = [];
+const player = [];
+let currentPlayer;
 
-for (i=0; i<=4; i++) {
-    dice[i] = new Dice (diceNames[i]); 
+//Create game artifacts
+
+//5 Dice
+for (i = 0; i <= 4; i++) {
+  dice[i] = new Dice(diceNames[i]);
 }
 
-
+//Players
+for (i = 0; i <= playerNames.length - 1; i++) {
+  player[i] = new Player([i], playerNames[i]);
+}
+//Manually set the first player only at the start of the game
+currentPlayer = player[0];
 
 //Get static DOM Elements
-total=document.querySelector(".total");
+total = document.querySelector(".total");
+rollButton = document.querySelector(".roll");
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //Main Game Functions
 function rollDice() {
-   lastThrow=0;
-    //Set the next value on the dice
-    for (i=0; i<=4; i++) {
-        dice[i].throw();
-        lastThrow=lastThrow+dice[i].value;
-        total.innerHTML=lastThrow;
+  //Throw the Dice
+  if (currentPlayer.diceRollsRemainingThisRound >= 1 && aDiceIsUnlocked()) {
+    for (i = 0; i <= 4; i++) {
+      dice[i].throw();
     }
+    currentPlayer.diceRollsRemainingThisRound--;
+    rollButton.innerHTML =
+      "Roll Dice (" + currentPlayer.diceRollsRemainingThisRound + " remaining)";
+  }
 }
 
+function tryPosition(mapKey) {
+  let subTotal = 0;
+  let total = 0;
 
+  if (
+    currentPlayer.roundsRemaining > 0 && //User cannot play if has already played all the rounds
+    currentPlayer.scoreCard.get(mapKey)[0] == "available" && //check this position has not already been used
+    dice[0].value > 0 //Check the dice has been rolled to prevent setting before rolling dice!
+  ) {
+    //Continues using this position, go calculate the points to be assigned
+    currentPlayer.usePosition(mapKey);
 
+    if (currentPlayer.roundsRemaining <= 0) {
+      //prevent further throws
+      currentPlayer.diceRollsRemainingThisRound = 0;
+      rollButton.innerHTML = "Game Over";
+
+      //show the total
+      for (let [key, value] of currentPlayer.scoreCard) {
+        subTotal = subTotal + value[1];
+      }
+      let qcSubTotal = document.querySelector(
+        `.sc-subtotal-p${currentPlayer.id}-score`
+      );
+      qcSubTotal.innerHTML = subTotal;
+
+      let qcBonus = document.querySelector(
+        `.sc-bonus-p${currentPlayer.id}-score`
+      );
+      if (subTotal >= 63) {
+        total = subTotal + 35;
+        qcBonus.innerHTML = 35;
+      } else {
+        total = subTotal;
+        qcBonus.innerHTML = 0;
+      }
+
+      let qcTotal = document.querySelector(
+        `.sc-total-p${currentPlayer.id}-score`
+      );
+      qcTotal.innerHTML = total;
+    }
+  }
+}
+
+function aDiceIsUnlocked() {
+  for (i = 0; i <= 4; i++) {
+    if (!dice[i].isLocked) {
+      return true;
+    }
+  }
+  return false;
+}
 
 //Random Integer Generator
 function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
-  }
+  return Math.floor(Math.random() * max);
+}
