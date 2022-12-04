@@ -27,100 +27,160 @@
       <div class="container-item">
         <div class="main" id="main">
           <div class="content">
-            <div class="dice-grid">
-              <div class="dice dice-one" onclick="dice[0].lockSwitch();"></div>
-              <div class="dice dice-two" onclick="dice[1].lockSwitch();"></div>
-              <div
-                class="dice dice-three"
-                onclick="dice[2].lockSwitch();"></div>
-              <div class="dice dice-four" onclick="dice[3].lockSwitch();"></div>
-              <div class="dice dice-five" onclick="dice[4].lockSwitch();"></div>
-            </div>
-            <div class="buttons-grid">
-              <div class="led total"></div>
-              <div class="btn roll" onclick="rollDice();">
-                Roll Dice (3 remaining)
-              </div>
-            </div>
-            <div class="sc-grid">
-              <div class="sc sc-rounds">Upper Section</div>
-              <div class="sc sc-how">How to Score</div>
-              <div class="sc sc-p0-name">Player 1</div>
+            <div class="game-grid">
+              <div class="game-header">Nice Dice!</div>
+              <div class="sc-grid">
+                <div class="sc sc-rounds">Upper Section</div>
+                <div class="sc sc-how">How to Score</div>
+                <div class="sc sc-p0-name">Player 1</div>
 
-              <div class="sc sc-1s">1s</div>
-              <div class="sc sc-how">Count the 1s</div>
-              <div class="sc sc-pr-grid sc-1s-p0">
-                <div class="score sc-1s-p0-score"></div>
-                <div
-                  class="btn-select sc-1s-p0-btn"
-                  onclick="tryPosition('1s',0)"></div>
-              </div>
+                <div class="sc sc-1s">1s</div>
+                <div class="sc sc-how">Count the 1s</div>
+                <div class="sc sc-pr-grid sc-1s-p0">
+                  <div class="score sc-1s-p0-score"></div>
+                  <div
+                    class="btn-select sc-1s-p0-btn"
+                    onclick="tryPosition('1s',0)"></div>
+                </div>
 
-              <div class="sc sc-2s">2s</div>
-              <div class="sc sc-how">Count the 2s</div>
-              <div class="sc sc-pr-grid sc-2s-p0">
-                <div class="score sc-2s-p0-score"></div>
-                <div
-                  class="btn-select sc-2s-p0-btn"
-                  onclick="tryPosition('2s',0)"></div>
-              </div>
+                <div class="sc sc-2s">2s</div>
+                <div class="sc sc-how">Count the 2s</div>
+                <div class="sc sc-pr-grid sc-2s-p0">
+                  <div class="score sc-2s-p0-score"></div>
+                  <div
+                    class="btn-select sc-2s-p0-btn"
+                    onclick="tryPosition('2s',0)"></div>
+                </div>
 
-              <div class="sc sc-3s-name">3s</div>
-              <div class="sc sc-how">Count the 3s</div>
-              <div class="sc sc-pr-grid sc-3s-p0">
-                <div class="score sc-3s-p0-score"></div>
-                <div
-                  class="btn-select sc-3s-p0-btn"
-                  onclick="tryPosition('3s',0)"></div>
-              </div>
+                <div class="sc sc-3s-name">3s</div>
+                <div class="sc sc-how">Count the 3s</div>
+                <div class="sc sc-pr-grid sc-3s-p0">
+                  <div class="score sc-3s-p0-score"></div>
+                  <div
+                    class="btn-select sc-3s-p0-btn"
+                    onclick="tryPosition('3s',0)"></div>
+                </div>
 
-              <div class="sc sc-4s-name">4s</div>
-              <div class="sc sc-how">Count the 4s</div>
-              <div class="sc sc-pr-grid sc-4s-p0">
-                <div class="score sc-4s-p0-score"></div>
-                <div
-                  class="btn-select sc-4s-p0-btn"
-                  onclick="tryPosition('4s',0)"></div>
-              </div>
+                <div class="sc sc-4s-name">4s</div>
+                <div class="sc sc-how">Count the 4s</div>
+                <div class="sc sc-pr-grid sc-4s-p0">
+                  <div class="score sc-4s-p0-score"></div>
+                  <div
+                    class="btn-select sc-4s-p0-btn"
+                    onclick="tryPosition('4s',0)"></div>
+                </div>
 
-              <div class="sc sc-3s-name">5s</div>
-              <div class="sc sc-how">Count the 5s</div>
-              <div class="sc sc-pr-grid sc-5s-p0">
-                <div class="score sc-5s-p0-score"></div>
-                <div
-                  class="btn-select sc-5s-p0-btn"
-                  onclick="tryPosition('5s',0)"></div>
-              </div>
+                <div class="sc sc-3s-name">5s</div>
+                <div class="sc sc-how">Count the 5s</div>
+                <div class="sc sc-pr-grid sc-5s-p0">
+                  <div class="score sc-5s-p0-score"></div>
+                  <div
+                    class="btn-select sc-5s-p0-btn"
+                    onclick="tryPosition('5s',0)"></div>
+                </div>
 
-              <div class="sc sc-3s-name">6s</div>
-              <div class="sc sc-how">Count the 6s</div>
-              <div class="sc sc-pr-grid sc-6s-p0">
-                <div class="score sc-6s-p0-score"></div>
-                <div
-                  class="btn-select sc-6s-p0-btn"
-                  onclick="tryPosition('6s',0)"></div>
-              </div>
+                <div class="sc sc-3s-name">6s</div>
+                <div class="sc sc-how">Count the 6s</div>
+                <div class="sc sc-pr-grid sc-6s-p0">
+                  <div class="score sc-6s-p0-score"></div>
+                  <div
+                    class="btn-select sc-6s-p0-btn"
+                    onclick="tryPosition('6s',0)"></div>
+                </div>
 
-              <div class="sc heavy sc-subtotal-name">Sub Total</div>
-              <div class="sc heavy sc-how">Total Points Top Section</div>
-              <div class="sc heavy sc-pr-grid sc-subtotal-p0">
-                <div class="score heavy sc-subtotal-p0-score"></div>
-                <div></div>
-              </div>
+                <div class="sc heavy sc-subtotal-name">Sub Total</div>
+                <div class="sc heavy sc-how">Total Points Top Section</div>
+                <div class="sc heavy sc-pr-grid sc-subtotal-p0">
+                  <div class="score heavy sc-subtotal-p0-score"></div>
+                  <div></div>
+                </div>
 
-              <div class="sc sc-bonus-name">Bonus</div>
-              <div class="sc sc-how">If subtotal 63 or more, 35 points</div>
-              <div class="sc sc-pr-grid sc-bonus-p0">
-                <div class="score sc-bonus-p0-score"></div>
-                <div></div>
-              </div>
-              <!-- TODO - Add the rest of the table -->
+                <div class="sc sc-bonus-name">Bonus</div>
+                <div class="sc sc-how">If subtotal 63 or more, 35 points</div>
+                <div class="sc sc-pr-grid sc-bonus-p0">
+                  <div class="score sc-bonus-p0-score"></div>
+                  <div></div>
+                </div>
+                <!--TODO - Add the rest of the table -->
+                <div class="sc sc-XXX-name">ttt</div>
+                <div class="sc sc-how">tttttt</div>
+                <div class="sc sc-pr-grid sc-XXX-p0">
+                  <div class="score sc-XXX-p0-score"></div>
+                  <div></div>
+                </div>
 
-              <div class="sc heavy sc-total-name">Total</div>
-              <div class="sc heavy sc-how">Total Points</div>
-              <div class="sc heavy sc-pr-grid sc-total-p0">
-                <div class="score heavy sc-total-p0-score"></div>
-                <div></div>
+                <div class="sc sc-XXX-name">ttt</div>
+                <div class="sc sc-how">tttttt</div>
+                <div class="sc sc-pr-grid sc-XXX-p0">
+                  <div class="score sc-XXX-p0-score"></div>
+                  <div></div>
+                </div>
+
+                <div class="sc sc-XXX-name">ttt</div>
+                <div class="sc sc-how">tttttt</div>
+                <div class="sc sc-pr-grid sc-XXX-p0">
+                  <div class="score sc-XXX-p0-score"></div>
+                  <div></div>
+                </div>
+
+                <div class="sc sc-XXX-name">ttt</div>
+                <div class="sc sc-how">tttttt</div>
+                <div class="sc sc-pr-grid sc-XXX-p0">
+                  <div class="score sc-XXX-p0-score"></div>
+                  <div></div>
+                </div>
+
+                <div class="sc sc-XXX-name">ttt</div>
+                <div class="sc sc-how">tttttt</div>
+                <div class="sc sc-pr-grid sc-XXX-p0">
+                  <div class="score sc-XXX-p0-score"></div>
+                  <div></div>
+                </div>
+
+                <div class="sc sc-XXX-name">ttt</div>
+                <div class="sc sc-how">tttttt</div>
+                <div class="sc sc-pr-grid sc-XXX-p0">
+                  <div class="score sc-XXX-p0-score"></div>
+                  <div></div>
+                </div>
+
+                <div class="sc sc-XXX-name">ttt</div>
+                <div class="sc sc-how">tttttt</div>
+                <div class="sc sc-pr-grid sc-XXX-p0">
+                  <div class="score sc-XXX-p0-score"></div>
+                  <div></div>
+                </div>
+
+                <div class="sc heavy sc-total-name">Total</div>
+                <div class="sc heavy sc-how">Total Points</div>
+                <div class="sc heavy sc-pr-grid sc-total-p0">
+                  <div class="score heavy sc-total-p0-score"></div>
+                  <div></div>
+                </div>
+              </div>
+              <div class="dice-and-controls-grid">
+                <div class="dice-grid">
+                  <div
+                    class="dice dice-one"
+                    onclick="dice[0].lockSwitch();"></div>
+                  <div
+                    class="dice dice-two"
+                    onclick="dice[1].lockSwitch();"></div>
+                  <div
+                    class="dice dice-three"
+                    onclick="dice[2].lockSwitch();"></div>
+                  <div
+                    class="dice dice-four"
+                    onclick="dice[3].lockSwitch();"></div>
+                  <div
+                    class="dice dice-five"
+                    onclick="dice[4].lockSwitch();"></div>
+                </div>
+                <div class="buttons-grid">
+                  <div class="btn roll" onclick="rollDice();">
+                    Roll Dice (3 remaining)
+                  </div>
+                </div>
               </div>
             </div>
           </div>
