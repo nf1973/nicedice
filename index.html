@@ -8,8 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&family=Urbanist:wght@800&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
   </head>
 
@@ -31,15 +30,15 @@
               <div class="dice dice-two" onclick="dice[1].lockSwitch();"></div>
               <div
                 class="dice dice-three"
-                onclick="dice[2].lockSwitch();"
-              ></div>
+                onclick="dice[2].lockSwitch();"></div>
               <div class="dice dice-four" onclick="dice[3].lockSwitch();"></div>
               <div class="dice dice-five" onclick="dice[4].lockSwitch();"></div>
             </div>
             <div class="buttons-grid">
-              <div class="player-playing">Player</div>
-              <div class="led total">000</div>
-              <div class="btn roll" onclick="rollDice();">Roll Dice</div>
+              <div class="led total"></div>
+              <div class="btn roll" onclick="rollDice();">
+                Roll Dice (3 remaining)
+              </div>
             </div>
             <div class="sc-grid">
               <div class="sc sc-rounds">Upper Section</div>
@@ -52,8 +51,7 @@
                 <div class="sc-1s-p0-score">---</div>
                 <div
                   class="btn-select sc-1s-p0-btn"
-                  onclick="tryPosition('1s',0)"
-                ></div>
+                  onclick="tryPosition('1s',0)"></div>
               </div>
 
               <div class="sc sc-2s">2s</div>
@@ -62,8 +60,7 @@
                 <div class="sc-2s-p0-score">---</div>
                 <div
                   class="btn-select sc-2s-p0-btn"
-                  onclick="tryPosition('2s',0)"
-                ></div>
+                  onclick="tryPosition('2s',0)"></div>
               </div>
 
               <div class="sc sc-3s-name">3s</div>
@@ -72,8 +69,34 @@
                 <div class="sc-3s-p0-score">---</div>
                 <div
                   class="btn-select sc-3s-p0-btn"
-                  onclick="tryPosition('3s',0)"
-                ></div>
+                  onclick="tryPosition('3s',0)"></div>
+              </div>
+
+              <div class="sc sc-4s-name">4s</div>
+              <div class="sc sc-how">Count the 4s</div>
+              <div class="sc sc-pr-grid sc-4s-p0">
+                <div class="sc-4s-p0-score">---</div>
+                <div
+                  class="btn-select sc-4s-p0-btn"
+                  onclick="tryPosition('4s',0)"></div>
+              </div>
+
+              <div class="sc sc-3s-name">5s</div>
+              <div class="sc sc-how">Count the 5s</div>
+              <div class="sc sc-pr-grid sc-5s-p0">
+                <div class="sc-5s-p0-score">---</div>
+                <div
+                  class="btn-select sc-5s-p0-btn"
+                  onclick="tryPosition('5s',0)"></div>
+              </div>
+
+              <div class="sc sc-3s-name">6s</div>
+              <div class="sc sc-how">Count the 6s</div>
+              <div class="sc sc-pr-grid sc-6s-p0">
+                <div class="sc-6s-p0-score">---</div>
+                <div
+                  class="btn-select sc-6s-p0-btn"
+                  onclick="tryPosition('6s',0)"></div>
               </div>
 
               <!-- TODO - Add the rest of the table -->

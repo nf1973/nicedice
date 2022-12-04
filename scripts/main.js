@@ -25,10 +25,23 @@ class Dice {
       this.querySelector.style.backgroundColor = "white";
       this.querySelector.style.color = "black";
     } else {
-      this.isLocked = true;
-      this.querySelector.style.backgroundColor = "black";
-      this.querySelector.style.color = "white";
+      if (this.value > 0) {
+        this.isLocked = true;
+        this.querySelector.style.backgroundColor = "black";
+        this.querySelector.style.color = "white";
+      }
     }
+  }
+
+  clearValue() {
+    this.value = "";
+    this.querySelector.innerHTML = "";
+  }
+
+  unlock() {
+    this.isLocked = false;
+    this.querySelector.style.backgroundColor = "white";
+    this.querySelector.style.color = "black";
   }
 }
 
@@ -36,7 +49,7 @@ class Player {
   constructor(id, name) {
     this.id = id[0];
     this.name = name;
-    this.roundsRemaining = 13;
+    this.roundsRemaining = 6; //should be 13!
     this.diceRollsRemainingThisRound = 3;
     this.qsName = document.querySelector(`.sc-p${id}-name`);
     this.qs1s = document.querySelector(`.sc-1s-p${id}`);
@@ -84,10 +97,43 @@ class Player {
           }
         }
         break;
+      case "4s":
+        for (i = 0; i <= 4; i++) {
+          if (dice[i].value == 4) {
+            tot = tot + dice[i].value;
+          }
+        }
+        break;
+      case "5s":
+        for (i = 0; i <= 4; i++) {
+          if (dice[i].value == 5) {
+            tot = tot + dice[i].value;
+          }
+        }
+        break;
+      case "6s":
+        for (i = 0; i <= 4; i++) {
+          if (dice[i].value == 6) {
+            tot = tot + dice[i].value;
+          }
+        }
+        break;
     }
     this.scoreCard.set(mapKey, ["not-available", tot]);
     let qs = document.querySelector(`.sc-${mapKey}-p${currentPlayer.id}`);
     qs.innerHTML = tot;
+
+    this.roundsRemaining--;
+    this.diceRollsRemainingThisRound = 3;
+    //set the text for button
+    rollButton.innerHTML =
+      "Roll Dice (" + currentPlayer.diceRollsRemainingThisRound + " remaining)";
+
+    //Unlock all dice
+    for (i = 0; i <= 4; i++) {
+      dice[i].unlock();
+      dice[i].clearValue();
+    }
   }
 }
 
@@ -97,12 +143,10 @@ class Player {
 
 //Global Variables / Constant Definitions
 const diceNames = ["one", "two", "three", "four", "five"];
-const playerNames = ["Neil"]; //TODO Make the number of players changeable (1-4 players) and get input from the User
+const playerNames = ["Player 1"]; //TODO Make the number of players changeable (1-4 players) and get input from the User
 const dice = [];
 const player = [];
 let currentPlayer;
-
-var lastThrow = 0;
 
 //Create game artifacts
 
@@ -121,6 +165,7 @@ console.log("Current Player is " + currentPlayer.name);
 
 //Get static DOM Elements
 total = document.querySelector(".total");
+rollButton = document.querySelector(".roll");
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -128,28 +173,19 @@ total = document.querySelector(".total");
 
 //Main Game Functions
 function rollDice() {
-  lastThrow = 0;
   //Throw the Dice
   if (currentPlayer.diceRollsRemainingThisRound >= 1 && aDiceIsUnlocked()) {
-    console.log(
-      "Player " +
-        currentPlayer.name +
-        " (id:" +
-        currentPlayer.id +
-        ") has " +
-        currentPlayer.diceRollsRemainingThisRound +
-        " dice rolls remaining"
-    );
     for (i = 0; i <= 4; i++) {
       dice[i].throw();
-      lastThrow = lastThrow + dice[i].value;
-      total.innerHTML = lastThrow;
     }
     currentPlayer.diceRollsRemainingThisRound--;
+    rollButton.innerHTML =
+      "Roll Dice (" + currentPlayer.diceRollsRemainingThisRound + " remaining)";
   }
 }
 
 function tryPosition(mapKey) {
+  let totalScore = 0;
   console.log(
     "Player " +
       currentPlayer.name +
@@ -163,9 +199,21 @@ function tryPosition(mapKey) {
 
   if (
     currentPlayer.roundsRemaining > 0 &&
-    currentPlayer.scoreCard.get(mapKey)[0] == "available"
+    currentPlayer.scoreCard.get(mapKey)[0] == "available" &&
+    dice[0].value > 0 //Prevent setting before rolling dice!
   ) {
     currentPlayer.usePosition(mapKey);
+    if (currentPlayer.roundsRemaining <= 0) {
+      //prevent further throws
+      currentPlayer.diceRollsRemainingThisRound = 0;
+      rollButton.innerHTML = "Game Over";
+
+      //show the total
+      for (let [key, value] of currentPlayer.scoreCard) {
+        totalScore = totalScore + value[1];
+      }
+      total.innerHTML = totalScore;
+    }
   }
 }
 
