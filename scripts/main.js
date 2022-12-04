@@ -3,139 +3,6 @@
 //By Neil
 
 //Class Definitions
-class Dice {
-  constructor(name) {
-    this.name = name;
-    let qs = ".dice-" + name.toLowerCase();
-    this.querySelector = document.querySelector(qs);
-
-    this.isLocked = false;
-  }
-
-  throw() {
-    if (!this.isLocked) {
-      this.value = getRandomInt(6) + 1;
-      this.querySelector.innerHTML = this.value;
-    }
-  }
-
-  lockSwitch() {
-    if (this.isLocked) {
-      this.isLocked = false;
-      this.querySelector.style.backgroundColor = "white";
-      this.querySelector.style.color = "black";
-    } else {
-      if (this.value > 0) {
-        this.isLocked = true;
-        this.querySelector.style.backgroundColor = "black";
-        this.querySelector.style.color = "white";
-      }
-    }
-  }
-
-  clearValue() {
-    this.value = "";
-    this.querySelector.innerHTML = "";
-  }
-
-  unlock() {
-    this.isLocked = false;
-    this.querySelector.style.backgroundColor = "white";
-    this.querySelector.style.color = "black";
-  }
-}
-
-class Player {
-  constructor(id, name) {
-    this.id = id[0];
-    this.name = name;
-    this.roundsRemaining = 6; //should be 13!
-    this.diceRollsRemainingThisRound = 3;
-    this.qsName = document.querySelector(`.sc-p${id}-name`);
-    this.qs1s = document.querySelector(`.sc-1s-p${id}`);
-    this.qs2s = document.querySelector(`.sc-2s-p${id}`);
-    this.qs3s = document.querySelector(`.sc-3s-p${id}`);
-    this.qsName.textContent = name;
-    this.scoreCard = new Map([
-      ["1s", ["available", 0]],
-      ["2s", ["available", 0]],
-      ["3s", ["available", 0]],
-      ["4s", ["available", 0]],
-      ["5s", ["available", 0]],
-      ["6s", ["available", 0]],
-      ["3kind", ["available", 0]],
-      ["4kind", ["available", 0]],
-      ["fullhouse", ["available", 0]],
-      ["smallstr", ["available", 0]],
-      ["largestr", ["available", 0]],
-      ["5kind", ["available", 0]],
-      ["chance", ["available", 0]],
-    ]);
-  }
-
-  usePosition(mapKey) {
-    let tot = 0;
-    switch (mapKey) {
-      case "1s":
-        for (i = 0; i <= 4; i++) {
-          if (dice[i].value == 1) {
-            tot = tot + dice[i].value;
-          }
-        }
-        break;
-      case "2s":
-        for (i = 0; i <= 4; i++) {
-          if (dice[i].value == 2) {
-            tot = tot + dice[i].value;
-          }
-        }
-        break;
-      case "3s":
-        for (i = 0; i <= 4; i++) {
-          if (dice[i].value == 3) {
-            tot = tot + dice[i].value;
-          }
-        }
-        break;
-      case "4s":
-        for (i = 0; i <= 4; i++) {
-          if (dice[i].value == 4) {
-            tot = tot + dice[i].value;
-          }
-        }
-        break;
-      case "5s":
-        for (i = 0; i <= 4; i++) {
-          if (dice[i].value == 5) {
-            tot = tot + dice[i].value;
-          }
-        }
-        break;
-      case "6s":
-        for (i = 0; i <= 4; i++) {
-          if (dice[i].value == 6) {
-            tot = tot + dice[i].value;
-          }
-        }
-        break;
-    }
-    this.scoreCard.set(mapKey, ["not-available", tot]);
-    let qs = document.querySelector(`.sc-${mapKey}-p${currentPlayer.id}`);
-    qs.innerHTML = tot;
-
-    this.roundsRemaining--;
-    this.diceRollsRemainingThisRound = 3;
-    //set the text for button
-    rollButton.innerHTML =
-      "Roll Dice (" + currentPlayer.diceRollsRemainingThisRound + " remaining)";
-
-    //Unlock all dice
-    for (i = 0; i <= 4; i++) {
-      dice[i].unlock();
-      dice[i].clearValue();
-    }
-  }
-}
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -161,7 +28,6 @@ for (i = 0; i <= playerNames.length - 1; i++) {
 }
 //Manually set the first player only at the start of the game
 currentPlayer = player[0];
-console.log("Current Player is " + currentPlayer.name);
 
 //Get static DOM Elements
 total = document.querySelector(".total");
@@ -185,24 +51,17 @@ function rollDice() {
 }
 
 function tryPosition(mapKey) {
-  let totalScore = 0;
-  console.log(
-    "Player " +
-      currentPlayer.name +
-      " (id:" +
-      currentPlayer.id +
-      ") had " +
-      currentPlayer.roundsRemaining +
-      " rounds remaining. Selected position is " +
-      currentPlayer.scoreCard.get(mapKey)[0]
-  );
+  let subTotal = 0;
+  let total = 0;
 
   if (
-    currentPlayer.roundsRemaining > 0 &&
-    currentPlayer.scoreCard.get(mapKey)[0] == "available" &&
-    dice[0].value > 0 //Prevent setting before rolling dice!
+    currentPlayer.roundsRemaining > 0 && //User cannot play if has already played all the rounds
+    currentPlayer.scoreCard.get(mapKey)[0] == "available" && //check this position has not already been used
+    dice[0].value > 0 //Check the dice has been rolled to prevent setting before rolling dice!
   ) {
+    //Continues using this position, go calculate the points to be assigned
     currentPlayer.usePosition(mapKey);
+
     if (currentPlayer.roundsRemaining <= 0) {
       //prevent further throws
       currentPlayer.diceRollsRemainingThisRound = 0;
@@ -210,9 +69,28 @@ function tryPosition(mapKey) {
 
       //show the total
       for (let [key, value] of currentPlayer.scoreCard) {
-        totalScore = totalScore + value[1];
+        subTotal = subTotal + value[1];
       }
-      total.innerHTML = totalScore;
+      let qcSubTotal = document.querySelector(
+        `.sc-subtotal-p${currentPlayer.id}-score`
+      );
+      qcSubTotal.innerHTML = subTotal;
+
+      let qcBonus = document.querySelector(
+        `.sc-bonus-p${currentPlayer.id}-score`
+      );
+      if (subTotal >= 63) {
+        total = subTotal + 35;
+        qcBonus.innerHTML = 35;
+      } else {
+        total = subTotal;
+        qcBonus.innerHTML = 0;
+      }
+
+      let qcTotal = document.querySelector(
+        `.sc-total-p${currentPlayer.id}-score`
+      );
+      qcTotal.innerHTML = total;
     }
   }
 }
