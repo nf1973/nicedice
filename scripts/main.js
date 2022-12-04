@@ -67,30 +67,23 @@ function tryPosition(mapKey) {
       currentPlayer.diceRollsRemainingThisRound = 0;
       rollButton.innerHTML = "Game Over";
 
-      //show the total
-      for (let [key, value] of currentPlayer.scoreCard) {
-        subTotal = subTotal + value[1];
-      }
+      //calculate the total
+      currentPlayer.calculateTotal();
+
       let qcSubTotal = document.querySelector(
         `.sc-subtotal-p${currentPlayer.id}-score`
       );
-      qcSubTotal.innerHTML = subTotal;
+      qcSubTotal.innerHTML = currentPlayer.subTotal;
 
       let qcBonus = document.querySelector(
         `.sc-bonus-p${currentPlayer.id}-score`
       );
-      if (subTotal >= 63) {
-        total = subTotal + 35;
-        qcBonus.innerHTML = 35;
-      } else {
-        total = subTotal;
-        qcBonus.innerHTML = 0;
-      }
+      qcBonus.innerHTML = currentPlayer.bonus;
 
       let qcTotal = document.querySelector(
         `.sc-total-p${currentPlayer.id}-score`
       );
-      qcTotal.innerHTML = total;
+      qcTotal.innerHTML = currentPlayer.total;
     }
   }
 }
