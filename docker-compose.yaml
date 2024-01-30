@@ -4,7 +4,7 @@ services:
   web:
     image: nginx:alpine
     ports:
-      - "8080:80"
+      - "5002:80"
     volumes:
       - ./src:/usr/share/nginx/html
     restart: always
