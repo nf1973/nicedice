@@ -1,10 +1,10 @@
 :root {
-  --select-btn-color: #28955d;
+  --select-btn-color: #1f4a7f;
   --game-header-color: rgb(234, 206, 23);
-  --game-background-color: #163c9b;
+  --game-background-color: #1f4a7f;
   --dice-border-color: black;
   --dice-bg-color: #decfca;
-  --button-bg-color: #163c9b;
+  --button-bg-color: #1f4a7f;
   --button-text-color: var(--game-header-color);
   --scoreboard-background-color: #decfca;
   --scoreboaard-text-color: BB534A;
